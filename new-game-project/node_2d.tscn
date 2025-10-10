@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://e2d632iibtsp"]
+[gd_scene load_steps=9 format=3 uid="uid://e2d632iibtsp"]
 
 [ext_resource type="Texture2D" uid="uid://sg4lx20pibsw" path="res://icon.svg" id="1_wtcfe"]
 [ext_resource type="Script" uid="uid://d3d2p6qh7tm4h" path="res://playermovment.gd" id="2_0e48y"]
+[ext_resource type="Script" uid="uid://blf5i7up24pjq" path="res://leftright.gd" id="3_epypp"]
+[ext_resource type="Script" uid="uid://du2jps5tw7eio" path="res://character_body_2d_2.gd" id="4_0hol4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0e48y"]
 size = Vector2(2305, 137)
@@ -9,34 +11,72 @@ size = Vector2(2305, 137)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_epypp"]
 size = Vector2(117, 116)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0hol4"]
+size = Vector2(90.3846, 88.4614)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q6r6c"]
+size = Vector2(122, 115)
+
 [node name="Node2D" type="Node2D"]
 
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(-334, -62)
+scale = Vector2(0.0490624, 0.0725)
+texture = ExtResource("1_wtcfe")
+
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(125, 0)
 
 [node name="TextureRect" type="TextureRect" parent="StaticBody2D"]
 offset_left = -1418.0
-offset_top = -76.0
 offset_right = 868.0
-offset_bottom = 52.0
+offset_bottom = 128.0
 texture = ExtResource("1_wtcfe")
 stretch_mode = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(-269.5, -11.5)
+position = Vector2(-266, 67)
 shape = SubResource("RectangleShape2D_0e48y")
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
-position = Vector2(-420, -413)
+position = Vector2(454, -20)
 scale = Vector2(0.52, 0.52)
 script = ExtResource("2_0e48y")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
-position = Vector2(-0.5, -1)
+position = Vector2(0.0385179, -63.9231)
 shape = SubResource("RectangleShape2D_epypp")
 
 [node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
+position = Vector2(0.538518, -62.9231)
 texture = ExtResource("1_wtcfe")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(-420, -413)
+position = Vector2(-642, -330)
+
+[node name="Enemy" type="CharacterBody2D" parent="."]
+position = Vector2(-502, -51)
+scale = Vector2(0.52, 0.52)
+script = ExtResource("3_epypp")
+
+[node name="Sprite2D" type="Sprite2D" parent="Enemy"]
+position = Vector2(21.1538, 21.1538)
+scale = Vector2(0.703, 0.703)
+texture = ExtResource("1_wtcfe")
+
+[node name="collisionkomp" type="CollisionShape2D" parent="Enemy"]
+position = Vector2(21.1538, 21.1539)
+shape = SubResource("RectangleShape2D_0hol4")
+
+[node name="BOSSFIGHT" type="CharacterBody2D" parent="."]
+position = Vector2(-335, -5)
+script = ExtResource("4_0hol4")
+
+[node name="Sprite2D" type="Sprite2D" parent="BOSSFIGHT"]
+position = Vector2(3, -58)
+texture = ExtResource("1_wtcfe")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BOSSFIGHT"]
+position = Vector2(3, -58)
+shape = SubResource("RectangleShape2D_q6r6c")
