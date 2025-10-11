@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://cod7k18wbvf0o"]
+
+[ext_resource type="Texture2D" uid="uid://dxw6o5yti8hkt" path="res://Asteroid.webp" id="1_p0ukn"]
+[ext_resource type="Script" uid="uid://fc5h4qx8tfoy" path="res://asteroidscript.gd" id="2_gm5ib"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4d7sh"]
+size = Vector2(440.536, 405.105)
+
+[node name="asteroid" type="Sprite2D" groups=["asteroid"]]
+scale = Vector2(0.15, 0.196)
+texture = ExtResource("1_p0ukn")
+script = ExtResource("2_gm5ib")
+
+[node name="Area2D" type="Area2D" parent="." groups=["asteroid"]]
+scale = Vector2(1, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(3.33008, 10.204)
+scale = Vector2(1.34684, 1.08312)
+shape = SubResource("RectangleShape2D_4d7sh")

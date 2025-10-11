@@ -2,6 +2,7 @@ extends CharacterBody2D
 @onready var player :=$"../CharacterBody2D"
 var x = 0
 var updownlaser = preload("res://up_or_down.tscn")
+var asteroid = preload("res://asteroid.tscn")
 var selfvelocity = 0
 
 @onready var malen = $"../Sprite2D2"
@@ -39,7 +40,7 @@ func laserspawnmode() ->void:
 	for i in range(0,randi_range(3,6)):
 		var clone = updownlaser.instantiate()
 		self.get_parent().add_child(clone)
-		clone.position = Vector2(246.0,-100.0)
+		clone.position = Vector2(2773.0,-100.0) 
 		var randomnumber = randi_range(0,1)
 		if randomnumber == 1:
 			clone.position.y -= 100
@@ -50,9 +51,19 @@ func laserspawnmode() ->void:
 		selfvelocity =550
 		await  get_tree().create_timer(0.001).timeout
 
+func asteroidfall() ->void:
+	for i in range(0,randi_range(10,20)):
+		print("hi")
+		var xrandompos = randi_range(1673.0,2704.0)
+		var clone = asteroid.instantiate()
+		self.get_parent().add_child(clone)
+		clone.position = Vector2(xrandompos,-563.0)
+		await get_tree().create_timer(0.5).timeout
+	
+	
 
 func _ready() -> void:
-	laserspawnmode()
+	asteroidfall()
 
 func _physics_process(delta: float) -> void:
 	self.velocity.y = selfvelocity

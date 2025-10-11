@@ -9,6 +9,7 @@ var dashacc = 10
 var dashtimer =0
 var dashallowed = true
 var dashright = true	
+var isinbossarea= false
 
 
 @onready var rigidbody = preload("res://rigid_body_2d.tscn")
@@ -79,11 +80,39 @@ func _physics_process(delta: float) -> void:
 
 		
 	move_and_slide()
-	Camera.position = self.position
+	if isinbossarea != true:
+		Camera.position = self.position
+	else:
+		pass
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.is_in_group("laser"):
 
 		get_tree().quit()
+	elif area.is_in_group("asteroid"):
+		area.get_parent().queue_free()
+
+
+		
+
+
+	
+
+
+func _on_bossareaentered_area_entered(area: Area2D) -> void:
+
+	Camera.position = Vector2(2199.0,-278.0)
+	if area.is_in_group("player"):
+		isinbossarea = true	
 	else:
-		print("hello")
+		print(area.get_groups())
+
+
+	
+
+
+
+
+func _on_bossareaentered_area_exited(area: Area2D) -> void:
+	if area.is_in_group("player"):
+			isinbossarea = false
