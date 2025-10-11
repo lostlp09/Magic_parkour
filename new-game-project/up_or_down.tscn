@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://b01t4dx622nqx"]
+
+[ext_resource type="Texture2D" uid="uid://ytud12n334cl" path="res://laser1.png" id="1_7un0b"]
+[ext_resource type="Script" uid="uid://c6lj12imujvdn" path="res://up_or_down.gd" id="2_j6ucb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d21ai"]
+size = Vector2(31.9804, 12)
+
+[node name="up or down" type="Sprite2D"]
+rotation = 1.56743
+scale = Vector2(5.3915, 0.719352)
+texture = ExtResource("1_7un0b")
+script = ExtResource("2_j6ucb")
+
+[node name="Area2D" type="Area2D" parent="." groups=["laser"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-0.0349884, 0)
+shape = SubResource("RectangleShape2D_d21ai")

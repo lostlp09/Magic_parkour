@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://e2d632iibtsp"]
+[gd_scene load_steps=12 format=3 uid="uid://e2d632iibtsp"]
 
 [ext_resource type="Texture2D" uid="uid://sg4lx20pibsw" path="res://icon.svg" id="1_wtcfe"]
 [ext_resource type="Script" uid="uid://d3d2p6qh7tm4h" path="res://playermovment.gd" id="2_0e48y"]
 [ext_resource type="Script" uid="uid://blf5i7up24pjq" path="res://leftright.gd" id="3_epypp"]
-[ext_resource type="Script" uid="uid://du2jps5tw7eio" path="res://character_body_2d_2.gd" id="4_0hol4"]
+[ext_resource type="Script" uid="uid://du2jps5tw7eio" path="res://bossscript.gd" id="4_0hol4"]
+[ext_resource type="Texture2D" uid="uid://bejhgrifarprs" path="res://crown.png" id="5_d21ai"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0e48y"]
 size = Vector2(2305, 137)
@@ -11,18 +12,19 @@ size = Vector2(2305, 137)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_epypp"]
 size = Vector2(117, 116)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kdubu"]
+size = Vector2(126.923, 103.846)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0hol4"]
 size = Vector2(90.3846, 88.4614)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_kdubu"]
+specular_color = Color(0.835088, 0.097279, 1.92523e-07, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q6r6c"]
 size = Vector2(122, 115)
 
 [node name="Node2D" type="Node2D"]
-
-[node name="Sprite2D2" type="Sprite2D" parent="."]
-position = Vector2(-334, -62)
-scale = Vector2(0.0490624, 0.0725)
-texture = ExtResource("1_wtcfe")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(125, 0)
@@ -40,7 +42,7 @@ position = Vector2(-266, 67)
 shape = SubResource("RectangleShape2D_0e48y")
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
-position = Vector2(454, -20)
+position = Vector2(-141, 0)
 scale = Vector2(0.52, 0.52)
 script = ExtResource("2_0e48y")
 
@@ -52,11 +54,17 @@ shape = SubResource("RectangleShape2D_epypp")
 position = Vector2(0.538518, -62.9231)
 texture = ExtResource("1_wtcfe")
 
+[node name="Area2D" type="Area2D" parent="CharacterBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/Area2D"]
+position = Vector2(0, -63.4615)
+shape = SubResource("RectangleShape2D_kdubu")
+
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(-642, -330)
 
 [node name="Enemy" type="CharacterBody2D" parent="."]
-position = Vector2(-502, -51)
+position = Vector2(-769, -82)
 scale = Vector2(0.52, 0.52)
 script = ExtResource("3_epypp")
 
@@ -75,8 +83,19 @@ script = ExtResource("4_0hol4")
 
 [node name="Sprite2D" type="Sprite2D" parent="BOSSFIGHT"]
 position = Vector2(3, -58)
-texture = ExtResource("1_wtcfe")
+scale = Vector2(113.155, 113.155)
+texture = SubResource("CanvasTexture_kdubu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BOSSFIGHT"]
 position = Vector2(3, -58)
 shape = SubResource("RectangleShape2D_q6r6c")
+
+[node name="Crown" type="Sprite2D" parent="BOSSFIGHT"]
+position = Vector2(-1, -161)
+scale = Vector2(0.36, 0.44)
+texture = ExtResource("5_d21ai")
+
+[node name="positiontracker" type="Sprite2D" parent="."]
+position = Vector2(246, -60)
+
+[connection signal="area_entered" from="CharacterBody2D/Area2D" to="CharacterBody2D" method="_on_area_2d_area_entered"]

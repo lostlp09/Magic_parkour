@@ -8,6 +8,8 @@ var dash = false
 var dashacc = 10
 var dashtimer =0
 var dashallowed = true
+var dashright = true	
+
 
 @onready var rigidbody = preload("res://rigid_body_2d.tscn")
 @onready var Camera = $"../Camera2D"
@@ -25,12 +27,13 @@ func _physics_process(delta: float) -> void:
 			
 		if Input.is_action_pressed("left"):
 			self.get_child(1).flip_h = true
-			
 			self.velocity.x = speed * -1
+			dashright = false
 
 		if Input.is_action_pressed("right"):
 			self.get_child(1).flip_h = false
-			self.velocity.x = speed		
+			self.velocity.x = speed
+			dashright = true	
 		if Input.is_action_just_pressed("shoot up"):
 			if cooldown == false:
 				cooldown = true	
@@ -57,7 +60,10 @@ func _physics_process(delta: float) -> void:
 	else:
 		dashallowed = false
 		self.velocity.y = 0
-		self.velocity.x = 200 * dashacc
+		if  dashright == true:
+			self.velocity.x = 200 * dashacc
+		else:
+			self.velocity.x = -200 * dashacc
 		dashacc -= 50*delta
 		print("dashing")
 		dashtimer += delta
@@ -65,7 +71,7 @@ func _physics_process(delta: float) -> void:
 			dash = false
 			dashacc = 10
 			dashtimer =0
-			await get_tree().create_timer(3).timeout
+			await get_tree().create_timer(1).timeout
 			dashallowed = true	
 	if not is_on_floor() and jumptimer == 0:
 		jumpallowed = false
@@ -75,7 +81,9 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	Camera.position = self.position
 
+func _on_area_2d_area_entered(area: Area2D) -> void:
+	if area.is_in_group("laser"):
 
-		
-		
-	
+		get_tree().quit()
+	else:
+		print("hello")
