@@ -1,71 +1,166 @@
-[gd_scene load_steps=15 format=3 uid="uid://e2d632iibtsp"]
+[gd_scene load_steps=24 format=3 uid="uid://e2d632iibtsp"]
 
+[ext_resource type="Script" uid="uid://dc7wn365b6adl" path="res://bullet.gd" id="1_4d7sh"]
 [ext_resource type="Texture2D" uid="uid://sg4lx20pibsw" path="res://icon.svg" id="1_wtcfe"]
 [ext_resource type="Script" uid="uid://d3d2p6qh7tm4h" path="res://playermovment.gd" id="2_0e48y"]
+[ext_resource type="Texture2D" uid="uid://blklmwcpovr5q" path="res://images/light.png" id="2_ir8iy"]
 [ext_resource type="Script" uid="uid://blf5i7up24pjq" path="res://leftright.gd" id="3_epypp"]
+[ext_resource type="Texture2D" uid="uid://duywvn1lfi5bl" path="res://images/ChatGPT Image Oct 11, 2025, 06_13_46 PM.png" id="3_hqns4"]
 [ext_resource type="Script" uid="uid://du2jps5tw7eio" path="res://bossscript.gd" id="4_0hol4"]
+[ext_resource type="Texture2D" uid="uid://pvv6kd5xaior" path="res://Screenshot 2025-10-12 175017.png" id="4_4d7sh"]
 [ext_resource type="Texture2D" uid="uid://bejhgrifarprs" path="res://crown.png" id="5_d21ai"]
-[ext_resource type="Texture2D" uid="uid://en4yoep051k3" path="res://Untitled.jpg" id="6_kdubu"]
+[ext_resource type="Texture2D" uid="uid://hsstxu702pmi" path="res://images/Redsquare.png" id="6_x0ka3"]
+[ext_resource type="Texture2D" uid="uid://bmedapmu0fmy8" path="res://transparenthat.png" id="7_0h7mo"]
+[ext_resource type="Script" uid="uid://cdio0rvqbattn" path="res://healthbar.gd" id="10_ir8iy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x0ka3"]
+size = Vector2(1291.94, 296.109)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0e48y"]
-size = Vector2(2305, 137)
+size = Vector2(2305, 231.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_epypp"]
-size = Vector2(117, 116)
+size = Vector2(122, 119.077)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kdubu"]
-size = Vector2(126.923, 103.846)
+size = Vector2(153.845, 132.692)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_d21ai"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ir8iy"]
+size = Vector2(276.923, 276.923)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0hol4"]
 size = Vector2(90.3846, 88.4614)
 
-[sub_resource type="CanvasTexture" id="CanvasTexture_kdubu"]
-specular_color = Color(0.835088, 0.097279, 1.92523e-07, 1)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_q6r6c"]
-size = Vector2(122, 115)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_d21ai"]
-size = Vector2(3079.5, 99)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rj586"]
 size = Vector2(1158, 653)
 
+[sub_resource type="CanvasTexture" id="CanvasTexture_ir8iy"]
+specular_color = Color(0.835088, 0.097279, 1.92523e-07, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hqns4"]
+size = Vector2(122, 115)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0h7mo"]
+size = Vector2(136, 216)
+
 [node name="Node2D" type="Node2D"]
+script = ExtResource("1_4d7sh")
+metadata/_edit_vertical_guides_ = [2222.0, 1478.0]
+
+[node name="Bullet" type="Sprite2D" parent="."]
+z_index = 105
+position = Vector2(1399, 293)
+scale = Vector2(0.0990755, 0.111445)
+texture = ExtResource("2_ir8iy")
+
+[node name="Area2D" type="Area2D" parent="Bullet" groups=["bullet"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bullet/Area2D"]
+position = Vector2(30.2802, 53.8382)
+shape = SubResource("RectangleShape2D_x0ka3")
+
+[node name="ChatGptImageOct11,2025,061346Pm" type="Sprite2D" parent="Bullet/Area2D"]
+position = Vector2(-60.5595, 53.838)
+texture = ExtResource("3_hqns4")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2(125, 0)
+position = Vector2(2297, -23)
 
 [node name="TextureRect" type="TextureRect" parent="StaticBody2D"]
 offset_left = -1418.0
 offset_right = 868.0
 offset_bottom = 128.0
-texture = ExtResource("1_wtcfe")
+texture = ExtResource("4_4d7sh")
 stretch_mode = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(-266, 67)
+position = Vector2(-266, 114.25)
+shape = SubResource("RectangleShape2D_0e48y")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+position = Vector2(2759, -1441)
+rotation = -1.5708
+
+[node name="TextureRect" type="TextureRect" parent="StaticBody2D2"]
+offset_left = -1418.0
+offset_right = 868.0
+offset_bottom = 128.0
+texture = ExtResource("4_4d7sh")
+stretch_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2(-266, 114.25)
+shape = SubResource("RectangleShape2D_0e48y")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="."]
+position = Vector2(1414, -1445)
+rotation = -1.5708
+
+[node name="TextureRect" type="TextureRect" parent="StaticBody2D3"]
+offset_left = -1418.0
+offset_right = 868.0
+offset_bottom = 128.0
+texture = ExtResource("4_4d7sh")
+stretch_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
+position = Vector2(-266, 114.25)
 shape = SubResource("RectangleShape2D_0e48y")
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="." groups=["player"]]
-position = Vector2(1584, 0)
+position = Vector2(2680, -64)
 scale = Vector2(0.52, 0.52)
 script = ExtResource("2_0e48y")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
-position = Vector2(0.0385179, -63.9231)
+position = Vector2(-2.46143, -65.4615)
 shape = SubResource("RectangleShape2D_epypp")
 
 [node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
 position = Vector2(0.538518, -62.9231)
-texture = ExtResource("1_wtcfe")
+scale = Vector2(0.18, 0.18)
+texture = ExtResource("6_x0ka3")
+
+[node name="Sprite2D2" type="Sprite2D" parent="CharacterBody2D/Sprite2D"]
+position = Vector2(349.572, -312.82)
+scale = Vector2(0.743662, 0.814027)
+texture = ExtResource("7_0h7mo")
 
 [node name="Area2D" type="Area2D" parent="CharacterBody2D" groups=["player"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/Area2D"]
-position = Vector2(0, -63.4615)
+position = Vector2(0.0151367, -62.4881)
+rotation = -0.00309232
 shape = SubResource("RectangleShape2D_kdubu")
+metadata/_edit_group_ = true
+
+[node name="Node2D" type="Node2D" parent="CharacterBody2D"]
+position = Vector2(-2.26498e-06, -63.4615)
+
+[node name="bulletrotation preview" type="Sprite2D" parent="CharacterBody2D/Node2D"]
+position = Vector2(198.077, 7.6923)
+rotation = 1.56926
+scale = Vector2(73.0769, 153.385)
+texture = SubResource("CanvasTexture_d21ai")
+
+[node name="areafor bouncing" type="Area2D" parent="CharacterBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/areafor bouncing"]
+position = Vector2(0, -67.3077)
+shape = SubResource("RectangleShape2D_ir8iy")
+
+[node name="RayCast2D" type="RayCast2D" parent="CharacterBody2D"]
+position = Vector2(0, -67.3077)
+rotation = 1.5708
+scale = Vector2(1.92308, 1.92308)
+target_position = Vector2(7.62939e-06, 72)
+collide_with_areas = true
+collide_with_bodies = false
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(2193, -278)
@@ -84,46 +179,55 @@ texture = ExtResource("1_wtcfe")
 position = Vector2(21.1538, 21.1539)
 shape = SubResource("RectangleShape2D_0hol4")
 
-[node name="BOSSFIGHT" type="CharacterBody2D" parent="."]
-position = Vector2(-335, -5)
-script = ExtResource("4_0hol4")
-
-[node name="Sprite2D" type="Sprite2D" parent="BOSSFIGHT"]
-position = Vector2(3, -58)
-scale = Vector2(113.155, 113.155)
-texture = SubResource("CanvasTexture_kdubu")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BOSSFIGHT"]
-position = Vector2(3, -58)
-shape = SubResource("RectangleShape2D_q6r6c")
-
-[node name="Crown" type="Sprite2D" parent="BOSSFIGHT"]
-position = Vector2(-1, -161)
-scale = Vector2(0.36, 0.44)
-texture = ExtResource("5_d21ai")
-
 [node name="positiontracker" type="Sprite2D" parent="."]
-position = Vector2(2704, -563)
-
-[node name="StaticBody2D2" type="StaticBody2D" parent="."]
-position = Vector2(2566, 46)
-
-[node name="Untitled" type="Sprite2D" parent="StaticBody2D2"]
-position = Vector2(-12.0101, 3.34314)
-scale = Vector2(13.6444, 0.420828)
-texture = ExtResource("6_kdubu")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
-position = Vector2(-4.76013, 2.84313)
-shape = SubResource("RectangleShape2D_d21ai")
+position = Vector2(2736, -231)
 
 [node name="bossareaentered" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="bossareaentered"]
 position = Vector2(2199, -278)
 shape = SubResource("RectangleShape2D_rj586")
 
+[node name="ProgressBar" type="ProgressBar" parent="."]
+offset_left = 2496.0
+offset_top = -587.0
+offset_right = 2749.0
+offset_bottom = -526.0
+max_value = 1000.0
+value = 1000.0
+show_percentage = false
+script = ExtResource("10_ir8iy")
+metadata/_edit_group_ = true
+
+[node name="Bossfight" type="CharacterBody2D" parent="."]
+position = Vector2(2101, -401)
+script = ExtResource("4_0hol4")
+metadata/bosshp = 1000
+
+[node name="Sprite2D" type="Sprite2D" parent="Bossfight"]
+position = Vector2(3, -58)
+scale = Vector2(113.155, 113.155)
+texture = SubResource("CanvasTexture_ir8iy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bossfight"]
+position = Vector2(3, -58)
+shape = SubResource("RectangleShape2D_hqns4")
+
+[node name="Crown" type="Sprite2D" parent="Bossfight"]
+position = Vector2(-1, -161)
+scale = Vector2(0.36, 0.44)
+texture = ExtResource("5_d21ai")
+
+[node name="bossarea" type="Area2D" parent="Bossfight" groups=["boss"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bossfight/bossarea"]
+position = Vector2(3, -103)
+shape = SubResource("RectangleShape2D_0h7mo")
+
 [connection signal="area_entered" from="CharacterBody2D/Area2D" to="CharacterBody2D" method="_on_area_2d_area_entered"]
+[connection signal="area_entered" from="CharacterBody2D/areafor bouncing" to="CharacterBody2D" method="_on_areafor_bouncing_area_entered"]
 [connection signal="area_entered" from="bossareaentered" to="CharacterBody2D" method="_on_bossareaentered_area_entered"]
 [connection signal="area_exited" from="bossareaentered" to="CharacterBody2D" method="_on_bossareaentered_area_exited"]
 [connection signal="area_shape_exited" from="bossareaentered" to="CharacterBody2D" method="_on_bossareaentered_area_shape_exited"]
+[connection signal="area_entered" from="Bossfight/bossarea" to="." method="_on_bossarea_area_entered"]

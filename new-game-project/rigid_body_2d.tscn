@@ -7,7 +7,7 @@
 size = Vector2(117, 124)
 
 [node name="RigidBody2D" type="RigidBody2D"]
-position = Vector2(128, 384)
+position = Vector2(-384, -4096)
 mass = 31.941
 gravity_scale = 3.093
 script = ExtResource("1_jiowd")

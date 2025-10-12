@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://w0qrmlgs0ueh"]
+
+[ext_resource type="Script" uid="uid://du2jps5tw7eio" path="res://bossscript.gd" id="1_2ne6p"]
+[ext_resource type="Texture2D" uid="uid://bejhgrifarprs" path="res://crown.png" id="2_qy0bb"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_kdubu"]
+specular_color = Color(0.835088, 0.097279, 1.92523e-07, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q6r6c"]
+size = Vector2(122, 115)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4d7sh"]
+size = Vector2(136, 216)
+
+[node name="BOSSFIGHT" type="CharacterBody2D"]
+script = ExtResource("1_2ne6p")
+metadata/bosshp = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(3, -58)
+scale = Vector2(113.155, 113.155)
+texture = SubResource("CanvasTexture_kdubu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(3, -58)
+shape = SubResource("RectangleShape2D_q6r6c")
+
+[node name="Crown" type="Sprite2D" parent="."]
+position = Vector2(-1, -161)
+scale = Vector2(0.36, 0.44)
+texture = ExtResource("2_qy0bb")
+
+[node name="bossarea" type="Area2D" parent="." groups=["boss"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="bossarea"]
+position = Vector2(3, -103)
+shape = SubResource("RectangleShape2D_4d7sh")
+
+[node name="Node" type="Node" parent="."]
